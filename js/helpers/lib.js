@@ -9,6 +9,7 @@ export function createElement(id, isDone, text) {
   LI.className = "list-group-item d-flex align-items-center";
 
   let INPUT = document.createElement("input");
+  INPUT.dataset.type = "check";
   INPUT.className = "form-check-input me-3";
   INPUT.setAttribute("type", "checkbox");
   LI.append(INPUT);
@@ -22,11 +23,13 @@ export function createElement(id, isDone, text) {
   BTN_WRAPPER.className = "d-flex gap-1";
 
   let EDIT_BTN = document.createElement("button");
+  EDIT_BTN.dataset.type = "edit";
   EDIT_BTN.className = "btn btn-warning";
   EDIT_BTN.textContent = "edit";
   BTN_WRAPPER.append(EDIT_BTN);
 
   let DELETE_BTN = document.createElement("button");
+  DELETE_BTN.dataset.type = "delete";
   DELETE_BTN.className = "btn btn-danger";
   DELETE_BTN.textContent = "delete";
   BTN_WRAPPER.append(DELETE_BTN);
@@ -43,3 +46,5 @@ export function todoObjectCreator(text) {
     isDone: false,
   };
 }
+
+export function deleter(id) {}

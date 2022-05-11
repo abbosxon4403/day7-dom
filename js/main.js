@@ -11,6 +11,29 @@ let makerTodo = document.querySelector(".maker-todo");
 let addTodo = document.querySelector(".add-todo");
 let listGroup = document.querySelector(".list-group");
 
+listGroup.addEventListener("click", (event) => {
+  let pressedNode = event.target;
+
+  if (!listGroup.contains(pressedNode)) return;
+
+  if (!pressedNode.closest("[data-type]")) return;
+
+  switch (pressedNode.dataset.type) {
+    case "delete":
+      let deleteParentNode = pressedNode.parentNode.parentNode;
+      lib.delete(deleteParentNode.dataset.id);
+      break;
+    case "edit":
+      let editParentNode = pressedNode.parentNode.parentNode;
+      lib.edit(editParentNode.dataset.id);
+      break;
+    case "check":
+      let checkParentNode = pressedNode.parentNode;
+      lib.check(checkParentNode.dataset.id);
+      break;
+  }
+});
+
 // inputdan listga todoni qo'shish
 addTodo.addEventListener("click", () => {
   if (makerTodo.value.trim().length <= 3) {
@@ -34,7 +57,7 @@ addTodo.addEventListener("click", () => {
 });
 
 // statik datani listga reverse shaklda render qilish
-JSON.parse(storage.getItem("todos")).forEach((todo) => {
+data.forEach((todo) => {
   let newTodoNode = lib.createElement(todo.id, todo.isDone, todo.text);
 
   listGroup.prepend(newTodoNode);
