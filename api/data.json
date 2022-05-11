@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "todo": "kitob olish",
+    "isDone": true
+  },
+  {
+    "id": 2,
+    "todo": "boshqa narsa olish",
+    "isDone": false
+  }
+]
